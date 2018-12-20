@@ -7,5 +7,14 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "klsch-imports": {
+      "tags": [
+        "klsch"
+      ]
+    },
+    "klsch-imports-e2e": {
+      "tags": []
+    }
+  }
 }

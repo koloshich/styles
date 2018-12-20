@@ -2,7 +2,130 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "klsch-imports": {
+      "root": "apps/klsch-imports/",
+      "sourceRoot": "apps/klsch-imports/src",
+      "projectType": "application",
+      "prefix": "klsch",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/klsch-imports",
+            "index": "apps/klsch-imports/src/index.html",
+            "main": "apps/klsch-imports/src/main.ts",
+            "polyfills": "apps/klsch-imports/src/polyfills.ts",
+            "tsConfig": "apps/klsch-imports/tsconfig.app.json",
+            "assets": [
+              "apps/klsch-imports/src/favicon.ico",
+              "apps/klsch-imports/src/assets"
+            ],
+            "styles": [
+              "apps/klsch-imports/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/klsch-imports/src/environments/environment.ts",
+                  "with": "apps/klsch-imports/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "klsch-imports:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "klsch-imports:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "klsch-imports:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/klsch-imports/tsconfig.app.json",
+              "apps/klsch-imports/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/klsch-imports/jest.config.js",
+            "tsConfig": "apps/klsch-imports/tsconfig.spec.json",
+            "setupFile": "apps/klsch-imports/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "klsch-imports-e2e": {
+      "root": "apps/klsch-imports-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/klsch-imports-e2e/protractor.conf.js",
+            "devServerTarget": "klsch-imports:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "klsch-imports:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/klsch-imports-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
@@ -10,5 +133,6 @@
     },
     "defaultCollection": "@nrwl/schematics",
     "packageManager": "npm"
-  }
+  },
+  "defaultProject": "klsch-imports"
 }
