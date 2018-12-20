@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
-import { RouterModule } from '@angular/router';
+import { MyButtonComponent } from './my-button/my-button.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MyButtonComponent, ToolbarComponent],
   imports: [
     BrowserModule,
     NxModule.forRoot(),
-    RouterModule.forRoot([], { initialNavigation: 'enabled' })
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
