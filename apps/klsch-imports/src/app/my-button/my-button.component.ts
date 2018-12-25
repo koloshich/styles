@@ -6,13 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./my-button.component.scss']
 })
 export class MyButtonComponent implements OnInit {
-
   @Input()
   icon;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
